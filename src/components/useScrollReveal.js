@@ -1,0 +1,28 @@
+import { useEffect } from "react";
+
+/**
+ * Adds IntersectionObserver-based scroll reveal to elements
+ * with class="reveal", "reveal-left", "reveal-right", or "reveal-scale".
+ */
+export default function useScrollReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    const targets = document.querySelectorAll(
+      ".reveal, .reveal-left, .reveal-right, .reveal-scale"
+    );
+
+    targets.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+}
