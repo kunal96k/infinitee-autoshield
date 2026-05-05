@@ -528,10 +528,6 @@ body {
   overflow-x: hidden;
 }
 
-@media (max-width: 768px) {
-  body { padding-top: 68px; }
-}
-
 #root, .app-shell { min-height: 100vh; }
 
 /* ── SCROLL ANIMATIONS ── */
